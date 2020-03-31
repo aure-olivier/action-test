@@ -39,6 +39,7 @@ jobs:
         reviewers: aure-olivier
         team-reviewers: owners, maintainers
         branch: compatibility-table
+        branch-suffix: timestamp
     - name: Check outputs
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
