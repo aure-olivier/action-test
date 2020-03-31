@@ -18,8 +18,8 @@ jobs:
         readme_path: 'README.md'
         section_title: '# Compatibility table'
     - name: Create Pull Request
-      id: cpr
-      uses: peter-evans/create-pull-request@v2
+      id: createpr
+      uses: peter-evans/create-pull-request@v2.5.0
       with:
         token: ${{ secrets.GH_TOKEN }}
         commit-message: README update for Compatibility Table
@@ -34,7 +34,7 @@ jobs:
 
           [1]: https://github.com/sblecon/auto-filling-by-the-code
           [2]: https://github.com/peter-evans/create-pull-request
-        labels: compatibility, automated
+        labels: compatibility-table-automerge
         assignees: aure-olivier
         reviewers: aure-olivier
         team-reviewers: owners, maintainers
@@ -42,4 +42,4 @@ jobs:
     - name: Check outputs
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
-        echo "Pull Request Number - ${{ steps.cpr.outputs.pr_number }}"
+        echo "Pull Request Number - ${{ steps.createpr.outputs.pr_number }}"
