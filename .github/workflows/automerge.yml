@@ -2,14 +2,7 @@ name: Automerge compatibility/automated PR
 on:
   pull_request:
     types:
-      - labeled
-      - unlabeled
-      - synchronize
       - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
   pull_request_review:
     types:
       - submitted
