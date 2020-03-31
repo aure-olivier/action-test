@@ -1,14 +1,25 @@
 name: Compatibility - Automerge PR
 on:
   pull_request:
+    branches:
+      - compatibility-table
     types:
-      - labeled
+      - opened
 jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
+      - name: 'Wait for status checks'
+        id: waitforstatuschecks
+        uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
+        with:
+          ignoreActions: automerge
+          checkInterval: 13
+        env:
+          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
       - name: Automerge PR
-        uses: "pascalgn/automerge-action@135f0bdb927d9807b5446f7ca9ecc2c51de03c4a"
+        id: automergepr
+        uses: "pascalgn/automerge-action@v0.8.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
           MERGE_LABELS: "compatibility,automated"
