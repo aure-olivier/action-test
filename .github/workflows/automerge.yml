@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
           MERGE_LABELS: "compatibility,automated"
           MERGE_REMOVE_LABELS: ""
-          MERGE_METHOD: "merge"
+          MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "pull-request-title"
           MERGE_FORKS: "false"
           MERGE_RETRIES: "6"
