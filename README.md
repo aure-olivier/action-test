@@ -163,9 +163,11 @@ This runs every .js files in the `__tests__` folder.
 
 This table is updated automatically from the `compatibility-versions.json` file.
 
-## Status
+## Github actions
 
-![Update Readme Compatibility](https://github.com/GenesysPureEngage/agent-api-simulator/workflows/Update%20Readme%20Compatibility/badge.svg)
+![Compatibility - Update README](https://github.com/aure-olivier/action-test/workflows/Compatibility%20-%20Update%20README/badge.svg)
+
+![Compatibility - Automerge PR](https://github.com/aure-olivier/action-test/workflows/Compatibility%20-%20Automerge%20PR/badge.svg)
 
 ## Questions
 
