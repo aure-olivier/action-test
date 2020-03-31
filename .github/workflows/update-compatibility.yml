@@ -1,4 +1,4 @@
-name: Update README with Compatibility Table
+name: Compatibility - Update README
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
         commit-message: README update for Compatibility Table
         committer: GitHub Action <action@github.com>
         author: GitHub Action <action@github.com>
-        title: '[Compatibility Table] README update'
+        title: '[Compatibility] Update'
         body: |
           Compatibility Table update
           - README.md (section '# Compatibility table')

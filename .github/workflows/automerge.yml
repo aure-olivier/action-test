@@ -1,4 +1,4 @@
-name: Automerge compatibility/automated PR
+name: Compatibility - Automerge PR
 on:
   pull_request:
     types:
