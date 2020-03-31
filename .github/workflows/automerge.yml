@@ -5,7 +5,7 @@ on:
     branches:
       - "compatibility-table/*"
     types:
-      - opened
+      - labeled
   status: {}
 
 jobs:
