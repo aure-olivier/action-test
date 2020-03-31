@@ -11,7 +11,7 @@ jobs:
   updateCompatibilityTable:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - uses: sblecon/auto-filling-by-the-code@master
       with:
         version_file_path: 'compatibility-versions.json'
@@ -39,7 +39,6 @@ jobs:
         reviewers: aure-olivier
         team-reviewers: owners, maintainers
         branch: compatibility-table
-        branch-suffix: timestamp
     - name: Check outputs
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
