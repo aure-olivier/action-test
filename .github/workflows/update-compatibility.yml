@@ -21,7 +21,7 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v2
       with:
-        token: ${{ GH_TOKEN }}
+        token: ${{ secrets.GH_TOKEN }}
         commit-message: Update README.md Compatibility table
         committer: GitHub Action <action@github.com>
         author: GitHub Action <action@github.com>
