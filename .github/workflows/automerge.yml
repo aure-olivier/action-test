@@ -2,21 +2,10 @@ name: Compatibility - Automerge PR
 
 on:
   pull_request:
+    branches:
+      - compatibility-table
     types:
-      - labeled
-      - unlabeled
-      - synchronize
       - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
-  pull_request_review:
-    types:
-      - submitted
-  check_suite:
-    types:
-      - completed
   status: {}
 
 jobs:

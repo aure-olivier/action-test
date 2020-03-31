@@ -19,7 +19,7 @@ jobs:
         section_title: '# Compatibility table'
     - name: Create Pull Request
       id: createpr
-      uses: peter-evans/create-pull-request@v2.5
+      uses: peter-evans/create-pull-request@v2.5.0
       with:
         token: ${{ secrets.GH_TOKEN }}
         commit-message: README update for Compatibility Table
