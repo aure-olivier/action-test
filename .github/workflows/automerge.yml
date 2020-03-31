@@ -5,7 +5,7 @@ on:
     branches:
       - master
     types:
-      - opened
+      - labeled
   status: {}
 
 jobs:
@@ -17,8 +17,8 @@ jobs:
         uses: "pascalgn/automerge-action@v0.8.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
-          MERGE_LABELS: "compatibility,automated"
-          MERGE_REMOVE_LABELS: "automated"
+          MERGE_LABELS: "compatibility-table-automerge"
+          MERGE_REMOVE_LABELS: "compatibility-table-automerge"
           MERGE_METHOD: "merge"
           MERGE_COMMIT_MESSAGE: "pull-request-title"
           MERGE_FORKS: "false"

@@ -34,7 +34,7 @@ jobs:
 
           [1]: https://github.com/sblecon/auto-filling-by-the-code
           [2]: https://github.com/peter-evans/create-pull-request
-        labels: compatibility, automated
+        labels: compatibility-table-automerge
         assignees: aure-olivier
         reviewers: aure-olivier
         team-reviewers: owners, maintainers
