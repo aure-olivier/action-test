@@ -3,7 +3,7 @@ name: Compatibility - Automerge PR
 on:
   pull_request:
     branches:
-      - compatibility-table
+      - "compatibility-table/*"
     types:
       - opened
   status: {}
