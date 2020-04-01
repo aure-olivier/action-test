@@ -41,7 +41,21 @@ jobs:
         reviewers: aure-olivier
         team-reviewers: owners, maintainers
         branch: compatibility-table
-    - name: Check outputs
+    - name: Output pull request info
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
         echo "Pull Request Number - ${{ steps.createpr.outputs.pr_number }}"
+    - name: Automerge pull request with label 'compatibility-table-automerge'
+      id: automergepr
+      uses: "pascalgn/automerge-action@v0.8.0"
+      env:
+        GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
+        MERGE_LABELS: "compatibility-table-automerge"
+        MERGE_REMOVE_LABELS: "compatibility-table-automerge"
+        MERGE_METHOD: "merge"
+        MERGE_COMMIT_MESSAGE: "pull-request-title"
+        MERGE_FORKS: "false"
+        MERGE_RETRIES: "6"
+        MERGE_RETRY_SLEEP: "10000"
+        UPDATE_LABELS: ""
+        UPDATE_METHOD: "merge"
