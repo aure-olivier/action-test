@@ -24,10 +24,10 @@ jobs:
       uses: peter-evans/create-pull-request@v2.5.0
       with:
         token: ${{ secrets.GH_TOKEN }}
-        commit-message: README update for Compatibility table
+        commit-message: Update README for Compatibility Table
         committer: GitHub Action <action@github.com>
         author: GitHub Action <action@github.com>
-        title: 'README Compatibility Table update'
+        title: 'Update Compatibility Table'
         body: |
           Compatibility Table update
           - README.md (section '# Compatibility table')
