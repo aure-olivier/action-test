@@ -48,6 +48,8 @@ jobs:
     - name: Automerge pull request with label 'compatibility-table-automerge'
       id: automergepr
       uses: "pascalgn/automerge-action@v0.8.0"
+      with:
+        args: "--trace"
       env:
         GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
         MERGE_LABELS: "compatibility-table-automerge"
