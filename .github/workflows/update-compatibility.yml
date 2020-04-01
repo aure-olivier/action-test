@@ -49,23 +49,3 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
         echo "Pull Request Number - ${{ steps.createpr.outputs.pr_number }}"
-
-    - name: Sleep for 15 seconds
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '15s'
-
-    - name: Automerge pull request with label 'compatibility-table-automerge'
-      id: automergepr
-      uses: "pascalgn/automerge-action@v0.8.0"
-      env:
-        GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
-        MERGE_LABELS: "compatibility-table-automerge"
-        MERGE_REMOVE_LABELS: "compatibility-table-automerge"
-        MERGE_METHOD: "merge"
-        MERGE_COMMIT_MESSAGE: "pull-request-title"
-        MERGE_FORKS: "false"
-        MERGE_RETRIES: "6"
-        MERGE_RETRY_SLEEP: "10000"
-        UPDATE_LABELS: ""
-        UPDATE_METHOD: "merge"
