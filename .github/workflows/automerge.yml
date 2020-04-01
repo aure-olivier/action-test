@@ -1,4 +1,4 @@
-name: Compatibility - Automerge PR
+name: Compatibility - Automerge pull request
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: Automerge PR
+      - name: Automerge Pull request with label 'compatibility-table-automerge'
         id: automergepr
         uses: "pascalgn/automerge-action@v0.8.0"
         env:

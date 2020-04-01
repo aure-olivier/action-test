@@ -3,29 +3,31 @@ name: Compatibility - Update README
 on:
   push:
     paths:
-      - 'compatibility-versions.json'
+      - compatibility-versions.json
     branches:
-      - 'master'
+      - master
 
 jobs:
   updateCompatibilityTable:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: sblecon/auto-filling-by-the-code@master
+    - name: Checkout master
+      uses: actions/checkout@v2
+    - name: Update README.md
+      uses: sblecon/auto-filling-by-the-code@master
       with:
         version_file_path: 'compatibility-versions.json'
         readme_path: 'README.md'
         section_title: '# Compatibility table'
-    - name: Create Pull Request
+    - name: Create pull request with label 'compatibility-table-automerge'
       id: createpr
       uses: peter-evans/create-pull-request@v2.5.0
       with:
         token: ${{ secrets.GH_TOKEN }}
-        commit-message: README update for Compatibility Table
+        commit-message: README update for Compatibility table
         committer: GitHub Action <action@github.com>
         author: GitHub Action <action@github.com>
-        title: '[Compatibility] Update'
+        title: 'README Compatibility Table update'
         body: |
           Compatibility Table update
           - README.md (section '# Compatibility table')
