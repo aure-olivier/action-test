@@ -11,14 +11,17 @@ jobs:
   updateCompatibilityTable:
     runs-on: ubuntu-latest
     steps:
+
     - name: Checkout master
       uses: actions/checkout@v2
+
     - name: Update README.md
       uses: sblecon/auto-filling-by-the-code@master
       with:
         version_file_path: 'compatibility-versions.json'
         readme_path: 'README.md'
         section_title: '# Compatibility table'
+
     - name: Create pull request with label 'compatibility-table-automerge'
       id: createpr
       uses: peter-evans/create-pull-request@v2.5.0
@@ -41,15 +44,24 @@ jobs:
         reviewers: aure-olivier
         team-reviewers: owners, maintainers
         branch: compatibility-table
+
     - name: Output pull request info
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
         echo "Pull Request Number - ${{ steps.createpr.outputs.pr_number }}"
+
+    - name: Wait for status checks
+      id: waitforstatuschecks
+      uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
+      with:
+        ignoreActions: updateCompatibilityTable
+        checkInterval: 13
+      env:
+        GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
+
     - name: Automerge pull request with label 'compatibility-table-automerge'
       id: automergepr
       uses: "pascalgn/automerge-action@v0.8.0"
-      with:
-        args: "--trace"
       env:
         GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
         MERGE_LABELS: "compatibility-table-automerge"
