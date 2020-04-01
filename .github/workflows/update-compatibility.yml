@@ -38,7 +38,7 @@ jobs:
           [2]: https://github.com/peter-evans/create-pull-request
         labels: compatibility-table-automerge
         assignees: aure-olivier
-        reviewers: cadgerfeast
+        reviewers: aure-olivier
         team-reviewers: owners, maintainers
         branch: compatibility-table
     - name: Output pull request info
