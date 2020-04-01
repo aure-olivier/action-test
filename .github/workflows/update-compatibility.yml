@@ -50,14 +50,10 @@ jobs:
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
         echo "Pull Request Number - ${{ steps.createpr.outputs.pr_number }}"
 
-    - name: Wait for status checks
-      id: waitforstatuschecks
-      uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
+    - name: Sleep for 15 seconds
+      uses: jakejarvis/wait-action@master
       with:
-        ignoreActions: updateCompatibilityTable
-        checkInterval: 13
-      env:
-        GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
+        time: '15s'
 
     - name: Automerge pull request with label 'compatibility-table-automerge'
       id: automergepr
