@@ -2,7 +2,6 @@ const test = require('ava');
 const {testEndpoint} = require('../endpoints');
 
 const isUnitTest = process.env.NODE_ENV === 'test';
-const isUnitTestLight = process.env.NODE_ENV === 'test-light';
 
 // get the simulator webapp
 test('Static: get /', t => {
