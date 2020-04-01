@@ -32,7 +32,8 @@
     "start:simulator": "npm --prefix ./src/service/ run start",
     "serve:webapp": "npm --prefix ./src/webapp/ run serve",
     "lint": "yamllint data/**/*.yaml && npm --prefix ./src/webapp/ run lint && npm --prefix ./src/service/ run lint",
-    "test-ava": "cross-env NODE_ENV=test ava __tests__/*.js --verbose",
-    "test": "npm run lint && npm run test-ava"
+    "test-ava": "ava __tests__/*.js --verbose",
+    "test": "npm run lint && cross-env NODE_ENV=test npm run test-ava",
+    "test-light": "npm run lint && cross-env NODE_ENV=test-light npm run test-ava"
   }
 }

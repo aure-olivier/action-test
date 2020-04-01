@@ -10,7 +10,7 @@ const rimraf = require('rimraf');
 const path = require('path');
 const fs = require('fs');
 
-const isUnitTest = process.env.NODE_ENV === 'test';
+const isUnitTest = process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'test-light';
 
 // create a new progress bar instance and use shades_classic theme
 const downloadProgressBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
