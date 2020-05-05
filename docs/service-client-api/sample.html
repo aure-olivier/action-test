@@ -356,9 +356,9 @@
 
       // First, check if query param is present
       var params = getQueryParams(window.location.href);
-      if (params[api]) {
+      if (params['api']) {
         // Get default scapi script
-        scapiUrl = params[api];
+        scapiUrl = params['api'];
       } else {
         // Get default scapi script
         scapiUrl = 'wwe-service-client-api.js';
