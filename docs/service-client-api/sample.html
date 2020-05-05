@@ -45,166 +45,166 @@
     var scapiUrl = '';
 
     function executeCommand() {
-      eval(document.getElementById("command").value);
+      eval(document.getElementById('command').value);
     }
 
     function configLogger(text) {
-      var divOutput = document.getElementById("outputConfig");
-      divOutput.innerHTML = "<pre id='commandOutput'>" + text + "<br>";
+      var divOutput = document.getElementById('outputConfig');
+      divOutput.innerHTML = '<pre id="commandOutput">' + text + '<br>';
     }
 
     function log(text, json) {
-      var divOutput = document.getElementById("output");
-      divOutput.innerHTML = "<pre id='commandOutput'>" + text + "<br><code>" + json + "</code></pre><br/>" + divOutput.innerHTML;
+      var divOutput = document.getElementById('output');
+      divOutput.innerHTML = '<pre id="commandOutput">' + text + '<br><code>' + json + '</code></pre><br/>' + divOutput.innerHTML;
     }
 
-    function succeeded(result) { log("SUCCEEDED, result: ", JSON.stringify(result, null, "\t")); }
-    function failed(result) { log("FAILED, result: ", JSON.stringify(result, null, "\t")); }
+    function succeeded(result) { log('SUCCEEDED, result: ', JSON.stringify(result, null, '\t')); }
+    function failed(result) { log('FAILED, result: ', JSON.stringify(result, null, '\t')); }
 
     function showCommand(commandName) {
-      var command = "", commandHelp = "";
+      var command = '', commandHelp = '';
       switch (commandName) {
-        case "agent.get":
+        case 'agent.get':
           command = 'genesys.wwe.service.agent.get(succeeded, failed)';
-          commandHelp = "Get the agent attributes.";
+          commandHelp = 'Get the agent attributes.';
           break;
-        case "agent.getStateList":
+        case 'agent.getStateList':
           command = 'genesys.wwe.service.agent.getStateList(succeeded, failed)';
-          commandHelp = "Get the list of possible states of the agent.";
+          commandHelp = 'Get the list of possible states of the agent.';
           break;
-        case "agent.setState":
+        case 'agent.setState':
           command = 'genesys.wwe.service.agent.setState("NotReady", succeeded, failed)';
-          commandHelp = "Set the agent state.";
+          commandHelp = 'Set the agent state.';
           break;
-        case "agent.getState":
+        case 'agent.getState':
           command = 'genesys.wwe.service.agent.getState(succeeded, failed)';
-          commandHelp = "Get the agent state.";
+          commandHelp = 'Get the agent state.';
           break;
-        case "interaction.getInteractions":
+        case 'interaction.getInteractions':
           command = 'genesys.wwe.service.interaction.getInteractions(succeeded, failed)';
-          commandHelp = "Get all the interactions.";
+          commandHelp = 'Get all the interactions.';
           break;
-        case "interaction.getByInteractionId":
+        case 'interaction.getByInteractionId':
           command = 'genesys.wwe.service.interaction.getByInteractionId("1", succeeded, failed)';
-          commandHelp = "Get an interaction by its interaction identifier.";
+          commandHelp = 'Get an interaction by its interaction identifier.';
           break;
-        case "interaction.setUserData":
+        case 'interaction.setUserData':
           command = 'genesys.wwe.service.interaction.setUserData("1", { KEY1: "MyValue111", KEY2: "MyValue222" }, succeeded, failed)';
-          commandHelp = "Set the user data to the live interaction.";
+          commandHelp = 'Set the user data to the live interaction.';
           break;
-        case "interaction.deleteUserData":
+        case 'interaction.deleteUserData':
           command = 'genesys.wwe.service.interaction.deleteUserData("1", "KEY1", succeeded, failed)';
-          commandHelp = "Deletes the user data attached to the interaction.";
+          commandHelp = 'Deletes the user data attached to the interaction.';
           break;
-        case "interaction.selectCaseByCaseId":
+        case 'interaction.selectCaseByCaseId':
           command = 'genesys.wwe.service.interaction.selectCaseByCaseId("********-****-****-****-************", succeeded, failed)';
-          commandHelp = "Select the case in the UI by case identifier.";
+          commandHelp = 'Select the case in the UI by case identifier.';
           break;
-        case "interaction.markdone":
+        case 'interaction.markdone':
           command = 'genesys.wwe.service.interaction.markdone("1", succeeded, failed)';
-          commandHelp = "Mark done the selected interaction.";
+          commandHelp = 'Mark done the selected interaction.';
           break;
-        case "interaction.blockMarkdone":
+        case 'interaction.blockMarkdone':
           command = 'genesys.wwe.service.interaction.blockMarkdone("1", "My warning message!", succeeded, failed)';
-          commandHelp = "Block the mark done operation on the selected interaction.";
+          commandHelp = 'Block the mark done operation on the selected interaction.';
           break;
-        case "interaction.unblockMarkdone":
+        case 'interaction.unblockMarkdone':
           command = 'genesys.wwe.service.interaction.unblockMarkdone("1", succeeded, failed)';
-          commandHelp = "Unblock the mark done operation on the selected interaction.";
+          commandHelp = 'Unblock the mark done operation on the selected interaction.';
           break;
-        case "interaction.accept":
+        case 'interaction.accept':
           command = 'genesys.wwe.service.interaction.accept("1", succeeded, failed)';
-          commandHelp = "Accept the interaction.";
+          commandHelp = 'Accept the interaction.';
           break;
-        case "interaction.reject":
+        case 'interaction.reject':
           command = 'genesys.wwe.service.interaction.reject("1", succeeded, failed)';
-          commandHelp = "Reject the interaction.";
+          commandHelp = 'Reject the interaction.';
           break;
-        case "voice.dial":
+        case 'voice.dial':
           command = 'genesys.wwe.service.voice.dial("*PhoneNumber*", { myAttachedDataKey1: "myAttachedDataValue1", myAttachedDataKey2: "myAttachedDataValue2" }, succeeded, failed)';
-          commandHelp = "Call the destination with the optional attached data.";
+          commandHelp = 'Call the destination with the optional attached data.';
           break;
-        case "voice.answer":
+        case 'voice.answer':
           command = 'genesys.wwe.service.voice.answer("1", succeeded, failed)';
-          commandHelp = "Answer the call.";
+          commandHelp = 'Answer the call.';
           break;
-        case "voice.hold":
+        case 'voice.hold':
           command = 'genesys.wwe.service.voice.hold("1", succeeded, failed)';
-          commandHelp = "Hold the call.";
+          commandHelp = 'Hold the call.';
           break;
-        case "voice.resume":
+        case 'voice.resume':
           command = 'genesys.wwe.service.voice.resume("1", succeeded, failed)';
-          commandHelp = "Resume the call.";
+          commandHelp = 'Resume the call.';
           break;
-        case "voice.hangUp":
+        case 'voice.hangUp':
           command = 'genesys.wwe.service.voice.hangUp("1", succeeded, failed)';
-          commandHelp = "Release the call.";
+          commandHelp = 'Release the call.';
           break;
-        case "voice.startCallRecording":
+        case 'voice.startCallRecording':
           command = 'genesys.wwe.service.voice.startCallRecording("1", succeeded, failed)';
-          commandHelp = "Start the call recording.";
+          commandHelp = 'Start the call recording.';
           break;
-        case "voice.stopCallRecording":
+        case 'voice.stopCallRecording':
           command = 'genesys.wwe.service.voice.stopCallRecording("1", succeeded, failed)';
-          commandHelp = "Stop the call recording.";
+          commandHelp = 'Stop the call recording.';
           break;
-        case "voice.pauseCallRecording":
+        case 'voice.pauseCallRecording':
           command = 'genesys.wwe.service.voice.pauseCallRecording("1", succeeded, failed)';
-          commandHelp = "Pause the call recording.";
+          commandHelp = 'Pause the call recording.';
           break;
-        case "voice.resumeCallRecording":
+        case 'voice.resumeCallRecording':
           command = 'genesys.wwe.service.voice.resumeCallRecording("1", succeeded, failed)';
-          commandHelp = "Resume the call recording.";
+          commandHelp = 'Resume the call recording.';
           break;
-        case "sipEndpoint.muteMicrophone":
+        case 'sipEndpoint.muteMicrophone':
           command = 'genesys.wwe.service.sipEndpoint.muteMicrophone(succeeded, failed)';
-          commandHelp = "Mute the microphone of the SIP Endpoint.";
+          commandHelp = 'Mute the microphone of the SIP Endpoint.';
           break;
-        case "sipEndpoint.unmuteMicrophone":
+        case 'sipEndpoint.unmuteMicrophone':
           command = 'genesys.wwe.service.sipEndpoint.unmuteMicrophone(succeeded, failed)';
-          commandHelp = "Unmute the microphone of the SIP Endpoint.";
+          commandHelp = 'Unmute the microphone of the SIP Endpoint.';
           break;
-        case "sipEndpoint.muteSpeaker":
+        case 'sipEndpoint.muteSpeaker':
           command = 'genesys.wwe.service.sipEndpoint.muteSpeaker(succeeded, failed)';
-          commandHelp = "Mute the speaker of the SIP Endpoint.";
+          commandHelp = 'Mute the speaker of the SIP Endpoint.';
           break;
-        case "sipEndpoint.unmuteSpeaker":
+        case 'sipEndpoint.unmuteSpeaker':
           command = 'genesys.wwe.service.sipEndpoint.unmuteSpeaker(succeeded, failed)';
-          commandHelp = "Unmute the speaker of the SIP Endpoint.";
+          commandHelp = 'Unmute the speaker of the SIP Endpoint.';
           break;
-        case "sipEndpoint.isMicrophoneMute":
+        case 'sipEndpoint.isMicrophoneMute':
           command = 'genesys.wwe.service.sipEndpoint.isMicrophoneMute(succeeded, failed)';
-          commandHelp = "Get the mute state of the microphone of the SIP Endpoint.";
+          commandHelp = 'Get the mute state of the microphone of the SIP Endpoint.';
           break;
-        case "sipEndpoint.isSpeakerMute":
+        case 'sipEndpoint.isSpeakerMute':
           command = 'genesys.wwe.service.sipEndpoint.isSpeakerMute(succeeded, failed)';
-          commandHelp = "Get the mute state of the speaker of the SIP Endpoint.";
+          commandHelp = 'Get the mute state of the speaker of the SIP Endpoint.';
           break;
-        case "email.create":
+        case 'email.create':
           command = 'genesys.wwe.service.email.create("omaha@gmail.com", succeeded, failed)';
-          commandHelp = "Create a new empty email.";
+          commandHelp = 'Create a new empty email.';
           break;
-        case "media.getMediaList":
+        case 'media.getMediaList':
           command = 'genesys.wwe.service.media.getMediaList(succeeded, failed)';
-          commandHelp = "Get the media attributes.";
+          commandHelp = 'Get the media attributes.';
           break;
-        case "media.getMediaByName":
+        case 'media.getMediaByName':
           command = 'genesys.wwe.service.media.getMediaByName("voice", succeeded, failed)';
-          commandHelp = "Get a media by its name.";
+          commandHelp = 'Get a media by its name.';
           break;
-        case "media.setState":
+        case 'media.setState':
           command = 'genesys.wwe.service.media.setState("voice", "NotReady", succeeded, failed)';
-          commandHelp = "Set the media state.";
+          commandHelp = 'Set the media state.';
           break;
-        case "system.triggerActivity":
+        case 'system.triggerActivity':
           command = 'genesys.wwe.service.system.triggerActivity(succeeded, failed)';
-          commandHelp = "Trigger an activity.";
+          commandHelp = 'Trigger an activity.';
           break;
-        case "system.getAllowedServices":
+        case 'system.getAllowedServices':
           command = 'genesys.wwe.service.system.getAllowedServices(succeeded, failed)';
-          commandHelp = "Following the security configuration, this service retrieves the list of allowed services.";
+          commandHelp = 'Following the security configuration, this service retrieves the list of allowed services.';
           break;
-        case "system.popupToast":
+        case 'system.popupToast':
           command = 'genesys.wwe.service.system.popupToast({\n\
 	title: "The title",\n\
 	iconUrl: "https://cdn1.iconfinder.com/data/icons/free-social-media-12/32/RSS_social_media-128.png",\n\
@@ -220,9 +220,9 @@
 	autoCloseTimeout: 20000,\n\
 	sendToMyMessage: true\n\
 }, succeeded, failed)';
-          commandHelp = "Popup a customizable toast.";
+          commandHelp = 'Popup a customizable toast.';
           break;
-        case "system.updateToast":
+        case 'system.updateToast':
           command = 'genesys.wwe.service.system.updateToast("wweCustomToast0", {\n\
 	title: "The title",\n\
 	iconUrl: "https://cdn1.iconfinder.com/data/icons/free-social-media-12/32/RSS_social_media-128.png",\n\
@@ -235,50 +235,50 @@
 	buttons: [ "AAAAA", "BBBBB", "CCCCC" ]\n\
 	//buttonShowDismiss: true\n\
 }, succeeded, failed)';
-          commandHelp = "Popup a customizable toast.";
+          commandHelp = 'Popup a customizable toast.';
           break;
-        case "system.closeToast":
+        case 'system.closeToast':
           command = 'genesys.wwe.service.system.closeToast("wweCustomToast0", succeeded, failed)';
-          commandHelp = "Close a customizable toast.";
+          commandHelp = 'Close a customizable toast.';
           break;
-        case "configuration.getOption":
+        case 'configuration.getOption':
           command = 'genesys.wwe.service.configuration.getOption(["voice.*", "MySection/*"], succeeded, failed)';
           commandHelp = 'Get the value of an option.';
           break;
-          case "auth.getPureCloudToken":
+        case 'auth.getPureCloudToken':
           command = 'var forceNewToken = false;\ngenesys.wwe.service.auth.getPureCloudToken(forceNewToken, succeeded, failed)';
           commandHelp = 'Get the PureCloud Token for current session.';
           break;
-        case "auth.getJwtToken":
+        case 'auth.getJwtToken':
           command = 'genesys.wwe.service.auth.getJwtToken(succeeded, failed)';
           commandHelp = 'Get the JWT OAuth access token for current session.';
           break;
-        case "auth.forceNewJwtToken":
+        case 'auth.forceNewJwtToken':
           command = 'genesys.wwe.service.auth.forceNewJwtToken(succeeded, failed)';
           commandHelp = 'Get a new JWT OAuth access token for current session, forcing renewal.';
           break;
       }
-      document.getElementById("command").value = command;
-      commandHelp += " The 'succeeded' and 'failed' arguments are the callback functions called asynchronously to send the result.";
-      document.getElementById("commandHelp").innerText = commandHelp;
+      document.getElementById('command').value = command;
+      commandHelp += ' The "succeeded" and "failed" arguments are the callback functions called asynchronously to send the result.';
+      document.getElementById('commandHelp').innerText = commandHelp;
     }
 
     function eventHandler(message) {
       switch (message.event) {
-        case "agent":
-          log("Received agent event: ", JSON.stringify(message, null, "\t"));
+        case 'agent':
+          log('Received agent event: ', JSON.stringify(message, null, '\t'));
           break;
-        case "interaction":
-          log("Received interaction event: ", JSON.stringify(message, null, "\t"));
+        case 'interaction':
+          log('Received interaction event: ', JSON.stringify(message, null, '\t'));
           break;
-        case "markdone":
-          log("Received markdone event: ", JSON.stringify(message, null, "\t"));
+        case 'markdone':
+          log('Received markdone event: ', JSON.stringify(message, null, '\t'));
           break;
-        case "media":
-          log("Received media event: ", JSON.stringify(message, null, "\t"));
+        case 'media':
+          log('Received media event: ', JSON.stringify(message, null, '\t'));
           break;
-        case "system":
-          log("Received system event: ", JSON.stringify(message, null, "\t"));
+        case 'system':
+          log('Received system event: ', JSON.stringify(message, null, '\t'));
           break;
         default:
       }
@@ -294,7 +294,7 @@
     }
 
     function onClickScapiUrl() {
-      document.getElementById('content').style.display = "none";
+      document.getElementById('content').style.display = 'none';
       scapiUrl = document.getElementById('scapiUrl').value;
       if (isValidUrl(scapiUrl)) {
         scapiUrl = scapiUrl.replace('index.html', '');
@@ -302,9 +302,9 @@
           scapiUrl += '/'
         }
         scapiUrl += 'wwe-service-client-api.js';
-        configLogger('URL is "' + scapiUrl + '"');
+        configLogger('URL is valid : ' + scapiUrl);
       } else {
-        configLogger('URL "' + scapiUrl + '" does not seems valid.');
+        configLogger('URL is not valid : ' + scapiUrl);
       }
       _getScapiScript();
     }
@@ -338,8 +338,8 @@
 
     // Called when the current web page is loaded.
     function initializeWebPage() {
-      var port = window.location.port	? ":" + window.location.port : "";
-      document.getElementById("pageTitle").innerHTML = "SCAPI on " + window.location.protocol + "//" + window.location.hostname + port;
+      var port = window.location.port	? ':' + window.location.port : '';
+      document.getElementById('pageTitle').innerHTML = 'SCAPI on ' + window.location.protocol + '//' + window.location.hostname + port;
 
       // Get default scapi script
       scapiUrl = 'wwe-service-client-api.js';
@@ -348,7 +348,7 @@
 
     // Called when the wwe-service-client-api.js script is unable to be retrieved
     function onErrorScapiHandler() {
-      configLogger('Unable to get SCAPI from "' + _getScapiHref() + '"');
+      configLogger('SCAPI Client not found at ' + _getScapiHref());
     }
 
     // Called when the wwe-service-client-api.js scrip is properly loaded
@@ -357,9 +357,9 @@
       configLogger('SCAPI Client is ' + _getScapiHref());
 
       // Subscribe to Workspace Web Edition
-      genesys.wwe.service.subscribe(["agent", "interaction", "media", "system", "markdone"], eventHandler, this);
+      genesys.wwe.service.subscribe(['agent', 'interaction', 'media', 'system', 'markdone'], eventHandler, this);
 
-      document.getElementById('content').style.display = "block";
+      document.getElementById('content').style.display = 'block';
       document.getElementById('output').innerHTML = ''
     }
 
