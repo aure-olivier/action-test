@@ -293,7 +293,20 @@
       return false;
     }
 
-    function onClickScapiUrl() {
+    function getQueryParams(url) {
+      var params = {};
+      var parser = document.createElement('a');
+      parser.href = url;
+      var query = parser.search.substring(1);
+      var vars = query.split('&');
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        params[pair[0]] = decodeURIComponent(pair[1]);
+      }
+      return params;
+    };
+
+    function onValidateUrl() {
       document.getElementById('content').style.display = 'none';
       scapiUrl = document.getElementById('scapiUrl').value;
       if (isValidUrl(scapiUrl)) {
@@ -306,17 +319,17 @@
       } else {
         configLogger('URL is not valid : ' + scapiUrl);
       }
-      _getScapiScript();
+      _appendScapiScript();
     }
 
-    function _getScapiHref() {
+    function _getScapiScriptUri() {
       var a = document.createElement('a');
 		  a.href = scapiUrl;
       return a.href;
     }
 
     // Utility function to clean scripts src and get the new one
-    function _getScapiScript() {
+    function _appendScapiScript() {
       // Clean
       var scripts = document.getElementsByTagName('script');
       for (var i = scripts.length; i >= 0; i--) { //search backwards within nodelist for matching elements to remove
@@ -331,8 +344,8 @@
       scapi.setAttribute('async', false);
       scapi.setAttribute('charset', 'UTF-8');
       scapi.setAttribute('type', 'text/javascript')
-      scapi.onload = onLoadScapiHandler;
-      scapi.onerror = onErrorScapiHandler;
+      scapi.onload = onLoadScapiScript;
+      scapi.onerror = onErrorScapiScript;
       document.getElementsByTagName('head')[0].appendChild(scapi);
     }
 
@@ -341,20 +354,27 @@
       var port = window.location.port	? ':' + window.location.port : '';
       document.getElementById('pageTitle').innerHTML = 'SCAPI on ' + window.location.protocol + '//' + window.location.hostname + port;
 
-      // Get default scapi script
-      scapiUrl = 'wwe-service-client-api.js';
-      _getScapiScript();
+      // First, check if query param is present
+      var params = getQueryParams(window.location.href);
+      if (params[api]) {
+        // Get default scapi script
+        scapiUrl = params[api];
+      } else {
+        // Get default scapi script
+        scapiUrl = 'wwe-service-client-api.js';
+      }
+      _appendScapiScript();
     }
 
     // Called when the wwe-service-client-api.js script is unable to be retrieved
-    function onErrorScapiHandler() {
-      configLogger('SCAPI Client not found at ' + _getScapiHref());
+    function onErrorScapiScript() {
+      configLogger('SCAPI Client not found at ' + _getScapiScriptUri());
     }
 
     // Called when the wwe-service-client-api.js scrip is properly loaded
-    function onLoadScapiHandler() {
+    function onLoadScapiScript() {
       // Get info on current SCAPI client js
-      configLogger('SCAPI Client is ' + _getScapiHref());
+      configLogger('SCAPI Client is ' + _getScapiScriptUri());
 
       // Subscribe to Workspace Web Edition
       genesys.wwe.service.subscribe(['agent', 'interaction', 'media', 'system', 'markdone'], eventHandler, this);
@@ -374,7 +394,7 @@
     </p>
     <p>
       <input type='text' id='scapiUrl' placeholder="Please provide a valid WWE Domain (e.g. https://domain.com/ui/wwe/)">
-      <button onclick="onClickScapiUrl()">Validate</button>
+      <button onclick="onValidateUrl()">Validate</button>
     </p>
     <p>
       <div id="outputConfig"></div>
