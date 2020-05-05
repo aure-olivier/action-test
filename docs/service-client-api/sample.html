@@ -24,6 +24,10 @@
       overflow-wrap: break-word;
       white-space: pre-wrap;
     }
+    p.subTitle {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
     div#config p {
       margin: 2px;
     }
@@ -306,22 +310,6 @@
       return params;
     };
 
-    function onValidateUrl() {
-      document.getElementById('content').style.display = 'none';
-      scapiUrl = document.getElementById('scapiUrl').value;
-      if (isValidUrl(scapiUrl)) {
-        scapiUrl = scapiUrl.replace('index.html', '');
-        if (scapiUrl.slice(-1) !== '/') {
-          scapiUrl += '/'
-        }
-        scapiUrl += 'wwe-service-client-api.js';
-        configLogger('URL is valid : ' + scapiUrl);
-      } else {
-        configLogger('URL is not valid : ' + scapiUrl);
-      }
-      _appendScapiScript();
-    }
-
     function _getScapiScriptUri() {
       var a = document.createElement('a');
 		  a.href = scapiUrl;
@@ -368,7 +356,7 @@
 
     // Called when the wwe-service-client-api.js script is unable to be retrieved
     function onErrorScapiScript() {
-      configLogger('SCAPI Client not found at ' + _getScapiScriptUri());
+      configLogger('SCAPI Client not found at ' + _getScapiScriptUri() + '\nPlease expose "wwe-service-client-api.js" locally or reference WWE one using api query parameter.');
     }
 
     // Called when the wwe-service-client-api.js scrip is properly loaded
@@ -388,23 +376,10 @@
 
 <body onload="initializeWebPage()">
   <h3 id="pageTitle"></h3>
-  <div id='config'>
-    <p>
-      <label for='scapiUrl'>WWE URL </label>
-    </p>
-    <p>
-      <input type='text' id='scapiUrl' placeholder="Please provide a valid WWE Domain (e.g. https://domain.com/ui/wwe/)">
-      <button onclick="onValidateUrl()">Validate</button>
-    </p>
-    <p>
-      <div id="outputConfig"></div>
-    </p>
-  </div>
-  <br>
+  <div id='outputConfig'></div>
+
   <div id='content'>
-    <p>
-      <label>Commands </label>
-    </p>
+    <p class='subTitle'>Commands</p>
     <button onclick="showCommand('agent.get')">agent.get</button>
     <button onclick="showCommand('agent.getStateList')">agent.getStateList</button>
     <button onclick="showCommand('agent.setState')">agent.setState</button>
@@ -461,11 +436,10 @@
     <button onclick="document.getElementById('output').innerHTML = ''">Clear</button>
     <br>
   </div>
-
-  <p>
-    <label for='output'>Output </label>
-  </p>
+  <br>
+  <p class='subTitle'>Output</p>
   <div id="output"></div>
+
 </body>
 
 </html>
