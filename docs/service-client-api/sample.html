@@ -309,6 +309,12 @@
       _getScapiScript();
     }
 
+    function _getScapiHref() {
+      var a = document.createElement('a');
+		  a.href = scapiUrl;
+      return a.href;
+    }
+
     // Utility function to clean scripts src and get the new one
     function _getScapiScript() {
       // Clean
@@ -342,15 +348,13 @@
 
     // Called when the wwe-service-client-api.js script is unable to be retrieved
     function onErrorScapiHandler() {
-      configLogger('Unable to get SCAPI from "' + scapiUrl + '"');
+      configLogger('Unable to get SCAPI from "' + _getScapiHref() + '"');
     }
 
     // Called when the wwe-service-client-api.js scrip is properly loaded
     function onLoadScapiHandler() {
       // Get info on current SCAPI client js
-      var a = document.createElement('a');
-		  a.href = scapiUrl;
-      configLogger('SCAPI Client is ' + a.href);
+      configLogger('SCAPI Client is ' + _getScapiHref());
 
       // Subscribe to Workspace Web Edition
       genesys.wwe.service.subscribe(["agent", "interaction", "media", "system", "markdone"], eventHandler, this);
