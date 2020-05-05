@@ -49,7 +49,7 @@
     }
 
     function configLogger(text) {
-      var divOutput = document.getElementById("output");
+      var divOutput = document.getElementById("outputConfig");
       divOutput.innerHTML = "<pre id='commandOutput'>" + text + "<br>";
     }
 
@@ -285,12 +285,12 @@
     }
 
     function isValidUrl(string) {
-      try {
-        new URL(string);
-      } catch (ex) {
-        return false;
+      var expression = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/gi;
+      var regex = new RegExp(expression);
+      if (string.match(regex)) {
+        return true;
       }
-      return true;
+      return false;
     }
 
     function onClickScapiUrl() {
@@ -335,7 +335,7 @@
       var port = window.location.port	? ":" + window.location.port : "";
       document.getElementById("pageTitle").innerHTML = "SCAPI on " + window.location.protocol + "//" + window.location.hostname + port;
 
-      // Default scapi script
+      // Get default scapi script
       scapiUrl = 'wwe-service-client-api.js';
       _getScapiScript();
     }
@@ -347,6 +347,11 @@
 
     // Called when the wwe-service-client-api.js scrip is properly loaded
     function onLoadScapiHandler() {
+      // Get info on current SCAPI client js
+      var a = document.createElement('a');
+		  a.href = scapiUrl;
+      configLogger('SCAPI Client is ' + a.href);
+
       // Subscribe to Workspace Web Edition
       genesys.wwe.service.subscribe(["agent", "interaction", "media", "system", "markdone"], eventHandler, this);
 
@@ -359,7 +364,6 @@
 
 <body onload="initializeWebPage()">
   <h3 id="pageTitle"></h3>
-  <br>
   <div id='config'>
     <p>
       <label for='scapiUrl'>WWE URL </label>
@@ -368,8 +372,10 @@
       <input type='text' id='scapiUrl' placeholder="Please provide a valid WWE Domain (e.g. https://domain.com/ui/wwe/)">
       <button onclick="onClickScapiUrl()">Validate</button>
     </p>
+    <p>
+      <div id="outputConfig"></div>
+    </p>
   </div>
-  <br>
   <br>
   <div id='content'>
     <p>
