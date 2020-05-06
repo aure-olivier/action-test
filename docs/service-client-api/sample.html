@@ -257,10 +257,6 @@
           command = 'genesys.wwe.service.auth.getJwtToken(succeeded, failed)';
           commandHelp = 'Get the JWT OAuth access token for current session.';
           break;
-        case 'auth.forceNewJwtToken':
-          command = 'genesys.wwe.service.auth.forceNewJwtToken(succeeded, failed)';
-          commandHelp = 'Get a new JWT OAuth access token for current session, forcing renewal.';
-          break;
       }
       document.getElementById('command').value = command;
       commandHelp += ' The "succeeded" and "failed" arguments are the callback functions called asynchronously to send the result.';
@@ -426,7 +422,6 @@
     <button onclick="showCommand('configuration.getOption')">configuration.getOption</button>
     <br>
     <button onclick="showCommand('auth.getJwtToken')">auth.getJwtToken</button>
-    <button onclick="showCommand('auth.forceNewJwtToken')">auth.forceNewJwtToken</button>
     <br>
     <textarea id="command" style="height: 50px; width: 600px;" aria-label="Please type API command"></textarea>
     <br>
