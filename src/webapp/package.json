@@ -2,7 +2,7 @@
   "name": "agent-api-simulator",
   "version": "0.1.0",
   "private": true,
-  "author": "Genesys",
+  "author": "Genesys Feature 1",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
