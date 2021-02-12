@@ -20,7 +20,7 @@ import Header from "./components/Headers";
 import VoiceMails from "./components/VoiceMails";
 import Interactions from "./components/interactions/Interactions";
 import ServiceNotifications from "./components/ServiceNotifications";
-import {mapGetters} from 'vuex'
+import {mapGetters} from 'vuexs'
 
 export default {
   name: "App",
