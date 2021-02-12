@@ -18,6 +18,8 @@ Vue.use(Tooltip, {
 
 Vue.config.productionTip = false
 
+// Another comment here
+
 Vue.use(Snotify, {
   toast: {
     position: SnotifyPosition.rightBottom
