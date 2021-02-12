@@ -14,6 +14,8 @@ Vue.use(Tooltip, {
   delay: 100
 });
 
+// Add a comment
+
 Vue.config.productionTip = false
 
 Vue.use(Snotify, {
