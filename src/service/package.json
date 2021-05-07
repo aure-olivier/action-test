@@ -15,7 +15,7 @@
     "fs-extra": "8.1.0",
     "morgan": "1.9.1",
     "request": "2.88.0",
-    "underscore": "1.9.1",
+    "underscore": "1.12.1",
     "yaml": "1.6.0"
   },
   "devDependencies": {
